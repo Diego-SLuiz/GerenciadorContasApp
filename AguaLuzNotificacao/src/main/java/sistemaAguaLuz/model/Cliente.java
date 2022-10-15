@@ -16,14 +16,14 @@ public class Cliente {
     }
 
     public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
         cpf.replaceAll(". || -", "");
         if(cpf == null || cpf.length() < 11){
             throw new IllegalArgumentException("Digite um CPF válido");
         }
-        return  this.cpf = cpf;
-    }
-
-    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 
