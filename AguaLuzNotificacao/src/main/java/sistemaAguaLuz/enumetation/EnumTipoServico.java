@@ -9,4 +9,7 @@ public enum EnumTipoServico {
         this.valor = valor;
     }
 
+    public Double getValor() {
+        return valor;
+    }
 }

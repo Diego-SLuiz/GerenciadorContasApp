@@ -9,4 +9,7 @@ public enum EnumTipoNotificacao {
         this.sigla = sigla;
     }
 
+    public char getSigla() {
+        return sigla;
+    }
 }
