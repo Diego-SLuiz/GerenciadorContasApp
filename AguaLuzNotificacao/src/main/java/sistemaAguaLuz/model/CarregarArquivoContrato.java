@@ -1,9 +1,12 @@
 package sistemaAguaLuz.model;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+
 public class CarregarArquivoContrato {
     public static void  carregarContrato(Contrato contrato) {
 
-        Contrato contrato1 = new Contrato();
+        //Contrato contrato1 = new Contrato();
         contrato.getCliente().getNome();
         contrato.getCliente().getCpf();
         contrato.getCliente().getRg();
@@ -18,13 +21,17 @@ public class CarregarArquivoContrato {
         contrato.getCliente().getEndereco().getEnumPais().getSigla();
 
         contrato.getData();
-        contrato.getHora();
+        Date
+        String hora = contrato.getHora().("dd/MM").toString().replaceAll("\\D", "");
         contrato.getProtocolo();
         contrato.getTipoNotificacao().getSigla();
         contrato.getTipoServico();
         contrato.getTipoServico().getValor();
 
         System.out.println(contrato);
+
+
+       // try(BufferedWriter bw = new BufferedWriter(new FileWriter(path, true)))
 
     }
 }
