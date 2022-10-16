@@ -61,4 +61,16 @@ public class Contrato {
     public void setTipoNotificacao(EnumTipoNotificacao tipoNotificacao) {
         this.tipoNotificacao = tipoNotificacao;
     }
+
+    @Override
+    public String toString() {
+        return "Contrato{" +
+                "cliente=" + cliente +
+                ", protocolo='" + protocolo + '\'' +
+                ", data=" + data +
+                ", hora=" + hora +
+                ", tipoServico=" + tipoServico +
+                ", tipoNotificacao=" + tipoNotificacao +
+                '}';
+    }
 }

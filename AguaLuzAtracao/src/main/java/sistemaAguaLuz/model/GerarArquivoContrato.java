@@ -6,16 +6,9 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 
-public class CarregarArquivoContrato {
-    public static void  gerarContratoTxt(Contrato contrato) throws IOException {
-
+public class GerarArquivoContrato {
+    public static void gerarContratoTxt(Contrato contrato) throws IOException {
         //CLIENTE
         String nome = String.format("%30.30s", contrato.getCliente().getNome());
         String cpf = String.format("%s", contrato.getCliente().getCpf().replaceAll("\\D", ""));
@@ -33,7 +26,7 @@ public class CarregarArquivoContrato {
         String pais = contrato.getCliente().getEndereco().getEnumPais().getSigla();
 
         String data = contrato.getData().toString().replaceAll("\\D", "");
-        String hora = String.format("%s",contrato.getHora().getHour() + contrato.getHora().getMinute());
+        String hora = String.format("%02d", contrato.getHora().getHour()) + String.format("%02d", contrato.getHora().getMinute());
         String protocolo = contrato.getProtocolo();
         char tipoNofiticacao = contrato.getTipoNotificacao().getSigla();
         String tipoServico = contrato.getTipoServico() == EnumTipoServico.AGUA ? "A" : "L";
@@ -64,7 +57,7 @@ public class CarregarArquivoContrato {
 
         File directory = new File(".\\src\\main\\java\\agua-luz-output");
 
-        if(!directory.exists()) {
+        if (!directory.exists()) {
             directory.mkdir();
         }
 
@@ -72,19 +65,19 @@ public class CarregarArquivoContrato {
         writer.write(resultado.toString());
         writer.newLine();
         writer.close();
+
+        System.out.println("Arquivo agua-luz-contratos.txt gerado com sucesso!");
     }
 
-    public static void gerarContratoCsv(Contrato contrato) throws IOException{
-
-
+    public static void gerarContratoCsv(Contrato contrato) throws IOException {
         //BUILDER
         StringBuilder resultado = new StringBuilder();
 
         //CLIENTE
         resultado.append(contrato.getCliente().getCpf() + ";");
         resultado.append(contrato.getCliente().getRg() + ";");
-        resultado.append(contrato.getCliente().getNome()+ ";");
-        resultado.append(contrato.getCliente().getCelular()+ ";");
+        resultado.append(contrato.getCliente().getNome() + ";");
+        resultado.append(contrato.getCliente().getCelular() + ";");
 
         //ENDEREÇO
         resultado.append(contrato.getCliente().getEndereco().getLogradouro() + ";");
@@ -94,20 +87,19 @@ public class CarregarArquivoContrato {
         resultado.append(contrato.getCliente().getEndereco().getCidade() + ";");
         resultado.append(contrato.getCliente().getEndereco().getUf() + ";");
         resultado.append(contrato.getCliente().getEndereco().getCep() + ";");
-        resultado.append(contrato.getCliente().getEndereco().getEnumPais().getSigla() + ";");
-
+        resultado.append(contrato.getCliente().getEndereco().getEnumPais() + ";");
 
         //CONTRATO
         resultado.append(contrato.getProtocolo() + ";");
         resultado.append(contrato.getData() + ";");
-        resultado.append(contrato.getHora().getHour() + ":" + contrato.getHora().getMinute() + ";");
+        resultado.append(String.format("%02d", contrato.getHora().getHour()) + ":" + (String.format("%02d", contrato.getHora().getMinute()) + ";"));
         resultado.append(contrato.getTipoServico() + ";");
         resultado.append(contrato.getTipoServico().getValor() + ";");
-        resultado.append(contrato.getTipoNotificacao().getSigla());
+        resultado.append(contrato.getTipoNotificacao());
 
         File directory = new File(".\\src\\main\\java\\agua-luz-output");
 
-        if(!directory.exists()) {
+        if (!directory.exists()) {
             directory.mkdir();
         }
 
@@ -115,5 +107,7 @@ public class CarregarArquivoContrato {
         writer.write(resultado.toString());
         writer.newLine();
         writer.close();
+
+        System.out.println("Arquivo agua-luz-contratos.csv gerado com sucesso!");
     }
 }

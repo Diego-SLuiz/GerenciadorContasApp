@@ -14,4 +14,12 @@ public enum EnumPais {
     public String getSigla() {
         return sigla;
     }
+
+    public static EnumPais getPais(String sigla) {
+        if (sigla == EnumPais.BRASIL.getSigla())
+            return EnumPais.BRASIL;
+        if (sigla == EnumPais.ESTADOSUNIDOS.getSigla())
+            return EnumPais.ESTADOSUNIDOS;
+        return EnumPais.FRANCA;
+    }
 }

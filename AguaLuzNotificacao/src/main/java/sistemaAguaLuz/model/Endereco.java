@@ -75,4 +75,18 @@ public class Endereco {
     public void setPais(EnumPais pais) {
         this.pais = pais;
     }
+
+    @Override
+    public String toString() {
+        return "Endereco{" +
+                "logradouro='" + logradouro + '\'' +
+                ", complemento='" + complemento + '\'' +
+                ", numero=" + numero +
+                ", bairro='" + bairro + '\'' +
+                ", cidade='" + cidade + '\'' +
+                ", cep='" + cep + '\'' +
+                ", uf='" + uf + '\'' +
+                ", pais=" + pais +
+                '}';
+    }
 }

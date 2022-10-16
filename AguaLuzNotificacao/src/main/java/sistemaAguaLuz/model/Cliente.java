@@ -4,6 +4,8 @@ public class Cliente {
     private String nome;
     private String cpf;
     private String rg;
+    private String celular;
+    private Endereco endereco;
 
     public String getNome() {
         return nome;
@@ -28,5 +30,31 @@ public class Cliente {
     public void setRg(String rg) {
         this.rg = rg;
     }
-}
 
+    public String getCelular() {
+        return this.celular;
+    }
+
+    public void setCelular(String celular) {
+        this.celular = celular;
+    }
+
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
+    }
+
+    @Override
+    public String toString() {
+        return "Cliente{" +
+                "nome='" + nome + '\'' +
+                ", cpf='" + cpf + '\'' +
+                ", rg='" + rg + '\'' +
+                ", celular='" + celular + '\'' +
+                ", endereco=" + endereco +
+                '}';
+    }
+}

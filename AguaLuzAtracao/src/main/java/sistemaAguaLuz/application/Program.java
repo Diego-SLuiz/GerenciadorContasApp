@@ -1,16 +1,18 @@
+package sistemaAguaLuz.application;
+
 import sistemaAguaLuz.enumetation.EnumPais;
 import sistemaAguaLuz.enumetation.EnumTipoNotificacao;
 import sistemaAguaLuz.enumetation.EnumTipoServico;
-import sistemaAguaLuz.model.CarregarArquivoContrato;
 import sistemaAguaLuz.model.Cliente;
 import sistemaAguaLuz.model.Contrato;
 import sistemaAguaLuz.model.Endereco;
+import sistemaAguaLuz.model.GerarArquivoContrato;
 
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-public class Main {
+public class Program {
     public static void main(String[] args) {
         // Criando objeto endereço
         Endereco endereco = new Endereco();
@@ -41,9 +43,9 @@ public class Main {
 
         // Gerando arquivo do contrato
         try {
-            CarregarArquivoContrato.gerarContratoTxt(contrato);
-            CarregarArquivoContrato.gerarContratoCsv(contrato);
-        }catch(IOException e) {
+            GerarArquivoContrato.gerarContratoTxt(contrato);
+            GerarArquivoContrato.gerarContratoCsv(contrato);
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

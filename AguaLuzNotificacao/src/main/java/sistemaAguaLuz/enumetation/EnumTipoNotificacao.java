@@ -13,4 +13,10 @@ public enum EnumTipoNotificacao {
     public char getSigla() {
         return sigla;
     }
+
+    public static EnumTipoNotificacao getNotificacao(String sigla) {
+        if (sigla == "W")
+            return EnumTipoNotificacao.WHATSAPP;
+        return EnumTipoNotificacao.SMS;
+    }
 }

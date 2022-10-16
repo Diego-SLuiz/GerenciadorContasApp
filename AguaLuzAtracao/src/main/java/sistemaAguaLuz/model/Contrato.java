@@ -68,7 +68,7 @@ public class Contrato {
 
     public void gerarProtocolo() {
         Random random = new Random();
-        this.protocolo = String.format("%s", random.nextInt(999999999));
+        this.protocolo = String.format("%010d", random.nextInt(999999999));
     }
 
     @Override

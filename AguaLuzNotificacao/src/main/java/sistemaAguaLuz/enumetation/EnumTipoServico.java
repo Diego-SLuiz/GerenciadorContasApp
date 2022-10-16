@@ -13,4 +13,10 @@ public enum EnumTipoServico {
     public Double getValor() {
         return valor;
     }
+
+    public static EnumTipoServico getServico(String sigla) {
+        if (sigla == "A")
+            return EnumTipoServico.AGUA;
+        return EnumTipoServico.LUZ;
+    }
 }
