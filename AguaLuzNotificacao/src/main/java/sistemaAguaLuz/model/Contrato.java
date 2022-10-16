@@ -5,6 +5,7 @@ import sistemaAguaLuz.enumetation.EnumTipoServico;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Random;
 
 public class Contrato {
     private Cliente cliente;
@@ -15,12 +16,12 @@ public class Contrato {
 
     private EnumTipoNotificacao tipoNotificacao;
 
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
+    public Contrato () {
+        gerarProtocolo();
     }
 
-    public void setProtocolo(String protocolo) {
-        this.protocolo = protocolo;
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
     public void setData(LocalDate data) {
@@ -63,6 +64,11 @@ public class Contrato {
 
     public EnumTipoNotificacao getTipoNotificacao() {
         return tipoNotificacao;
+    }
+
+    public void gerarProtocolo() {
+        Random random = new Random();
+        this.protocolo = String.format("%s", random.nextInt(999999999));
     }
 
     @Override

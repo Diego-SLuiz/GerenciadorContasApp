@@ -4,6 +4,7 @@ public class Cliente {
     private String nome;
     private String cpf;
     private String rg;
+    private String celular;
 
     private Endereco endereco;
 
@@ -16,15 +17,21 @@ public class Cliente {
     }
 
     public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
         cpf.replaceAll(". || -", "");
         if(cpf == null || cpf.length() < 11){
             throw new IllegalArgumentException("Digite um CPF válido");
         }
-        return  this.cpf = cpf;
+        this.cpf = cpf;
     }
 
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
+    public String getCelular(){return celular;}
+
+    public void setCelular(String celular){
+        this.celular = celular;
     }
 
     public String getRg() {
@@ -50,6 +57,7 @@ public class Cliente {
                 ", cpf='" + cpf + '\'' +
                 ", rg='" + rg + '\'' +
                 ", endereco=" + endereco +
+                "celular  = "+ celular +
                 '}';
     }
 }
