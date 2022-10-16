@@ -4,6 +4,7 @@ public class Cliente {
     private String nome;
     private String cpf;
     private String rg;
+    private String celular;
 
     private Endereco endereco;
 
@@ -25,6 +26,12 @@ public class Cliente {
             throw new IllegalArgumentException("Digite um CPF válido");
         }
         this.cpf = cpf;
+    }
+
+    public String getCelular(){return celular;}
+
+    public void setCelular(String celular){
+        this.celular = celular;
     }
 
     public String getRg() {
@@ -50,6 +57,7 @@ public class Cliente {
                 ", cpf='" + cpf + '\'' +
                 ", rg='" + rg + '\'' +
                 ", endereco=" + endereco +
+                "celular  = "+ celular +
                 '}';
     }
 }
