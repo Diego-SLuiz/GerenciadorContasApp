@@ -5,7 +5,7 @@ public enum EnumPais {
     ESTADOSUNIDOS("US"),
     FRANCA("FR");
 
-    private String sigla;
+    private final String sigla;
 
     EnumPais(String sigla) {
         this.sigla = sigla;
