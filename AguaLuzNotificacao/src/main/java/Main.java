@@ -41,7 +41,8 @@ public class Main {
 
         // Gerando arquivo do contrato
         try {
-            CarregarArquivoContrato.carregarContrato(contrato);
+            CarregarArquivoContrato.gerarContratoTxt(contrato);
+            CarregarArquivoContrato.gerarContratoCsv(contrato);
         }catch(IOException e) {
             e.printStackTrace();
         }
