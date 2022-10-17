@@ -1,12 +1,26 @@
 package sistemaAguaLuz.model;
 
+import java.util.ArrayList;
+
 public class Cliente {
     private String nome;
     private String cpf;
     private String rg;
     private String celular;
-
     private Endereco endereco;
+    private ArrayList<Contrato> listaContratos;
+
+    public Cliente() {
+        listaContratos = new ArrayList<Contrato>();
+    }
+
+    public ArrayList<Contrato> getListaContratos() {
+        return listaContratos;
+    }
+
+    public void addContrato(Contrato contrato) {
+        listaContratos.add(contrato);
+    }
 
     public String getNome() {
         return nome;
@@ -22,15 +36,17 @@ public class Cliente {
 
     public void setCpf(String cpf) {
         cpf.replaceAll(". || -", "");
-        if(cpf == null || cpf.length() < 11){
+        if (cpf == null || cpf.length() < 11) {
             throw new IllegalArgumentException("Digite um CPF válido");
         }
         this.cpf = cpf;
     }
 
-    public String getCelular(){return celular;}
+    public String getCelular() {
+        return celular;
+    }
 
-    public void setCelular(String celular){
+    public void setCelular(String celular) {
         this.celular = celular;
     }
 
@@ -57,7 +73,7 @@ public class Cliente {
                 ", cpf='" + cpf + '\'' +
                 ", rg='" + rg + '\'' +
                 ", endereco=" + endereco +
-                "celular  = "+ celular +
+                "celular  = " + celular +
                 '}';
     }
 }

@@ -7,20 +7,11 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class Contrato {
-    private Cliente cliente;
     private String protocolo;
     private LocalDate data;
     private LocalTime hora;
     private EnumTipoServico tipoServico;
     private EnumTipoNotificacao tipoNotificacao;
-
-    public Cliente getCliente() {
-        return cliente;
-    }
-
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
-    }
 
     public String getProtocolo() {
         return protocolo;
@@ -65,8 +56,7 @@ public class Contrato {
     @Override
     public String toString() {
         return "Contrato{" +
-                "cliente=" + cliente +
-                ", protocolo='" + protocolo + '\'' +
+                "protocolo='" + protocolo + '\'' +
                 ", data=" + data +
                 ", hora=" + hora +
                 ", tipoServico=" + tipoServico +

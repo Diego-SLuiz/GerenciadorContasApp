@@ -8,20 +8,14 @@ import java.time.LocalTime;
 import java.util.Random;
 
 public class Contrato {
-    private Cliente cliente;
     private String protocolo;
     private LocalDate data;
     private LocalTime hora;
     private EnumTipoServico tipoServico;
-
     private EnumTipoNotificacao tipoNotificacao;
 
-    public Contrato () {
+    public Contrato() {
         gerarProtocolo();
-    }
-
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
     }
 
     public void setData(LocalDate data) {
@@ -36,13 +30,8 @@ public class Contrato {
         this.tipoServico = tipoServico;
     }
 
-
     public void setTipoNotificacao(EnumTipoNotificacao tipoNotificacao) {
         this.tipoNotificacao = tipoNotificacao;
-    }
-
-    public Cliente getCliente() {
-        return cliente;
     }
 
     public String getProtocolo() {
@@ -61,7 +50,6 @@ public class Contrato {
         return tipoServico;
     }
 
-
     public EnumTipoNotificacao getTipoNotificacao() {
         return tipoNotificacao;
     }
@@ -74,13 +62,12 @@ public class Contrato {
     @Override
     public String toString() {
         return "Contrato{" +
-                "cliente=" + cliente +
                 ", protocolo='" + protocolo + '\'' +
                 ", data=" + data +
                 ", hora=" + hora +
                 ", tipoServico=" + tipoServico +
                 ", tipoNotificacao=" + tipoNotificacao +
-                  "Valor do serviço" + tipoServico.getValor() +
+                "Valor do serviço" + tipoServico.getValor() +
                 '}';
     }
 }

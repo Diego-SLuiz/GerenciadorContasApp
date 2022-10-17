@@ -16,10 +16,10 @@ public enum EnumPais {
     }
 
     public static EnumPais getPais(String sigla) {
-        if (sigla == EnumPais.BRASIL.getSigla())
-            return EnumPais.BRASIL;
-        if (sigla == EnumPais.ESTADOSUNIDOS.getSigla())
-            return EnumPais.ESTADOSUNIDOS;
-        return EnumPais.FRANCA;
+        for(EnumPais ep : values()){
+            if(ep.getSigla().equals(sigla))
+                return ep;
+        }
+        throw new IllegalArgumentException("Nao foi possivel localizar um tipo serviço com a sigla " + sigla);
     }
 }

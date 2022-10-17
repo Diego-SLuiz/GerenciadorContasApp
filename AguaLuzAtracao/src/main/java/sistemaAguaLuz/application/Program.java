@@ -25,6 +25,13 @@ public class Program {
         endereco.setUf("SP");
         endereco.setEnumPais(EnumPais.BRASIL);
 
+        // Criando objeto contrato
+        Contrato contrato = new Contrato();
+        contrato.setData(LocalDate.now().plusDays(10));
+        contrato.setHora(LocalTime.now());
+        contrato.setTipoServico(EnumTipoServico.AGUA);
+        contrato.setTipoNotificacao(EnumTipoNotificacao.SMS);
+
         // Criando objeto cliente
         Cliente cliente = new Cliente();
         cliente.setNome("Leonardo diCaprio da Silva");
@@ -32,19 +39,16 @@ public class Program {
         cliente.setRg("10.232.99-20");
         cliente.setCelular("(11)99898-7777");
         cliente.setEndereco(endereco);
-
-        // Criando objeto contrato
-        Contrato contrato = new Contrato();
-        contrato.setCliente(cliente);
-        contrato.setData(LocalDate.now().plusDays(10));
-        contrato.setHora(LocalTime.now());
-        contrato.setTipoServico(EnumTipoServico.AGUA);
-        contrato.setTipoNotificacao(EnumTipoNotificacao.SMS);
+        cliente.addContrato(contrato);
+        cliente.addContrato(contrato);
+        cliente.addContrato(contrato);
+        cliente.addContrato(contrato);
+        cliente.addContrato(contrato);
 
         // Gerando arquivo do contrato
         try {
-            GerarArquivoContrato.gerarContratoTxt(contrato);
-            GerarArquivoContrato.gerarContratoCsv(contrato);
+            GerarArquivoContrato.gerarContratoTxt(cliente);
+            GerarArquivoContrato.gerarContratoCsv(cliente);
         } catch (IOException e) {
             e.printStackTrace();
         }

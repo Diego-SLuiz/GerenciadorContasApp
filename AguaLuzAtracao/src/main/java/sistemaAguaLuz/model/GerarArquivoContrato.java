@@ -6,108 +6,93 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.format.DateTimeFormatter;
 
 public class GerarArquivoContrato {
-    public static void gerarContratoTxt(Contrato contrato) throws IOException {
-        //CLIENTE
-        String nome = String.format("%30.30s", contrato.getCliente().getNome());
-        String cpf = String.format("%s", contrato.getCliente().getCpf().replaceAll("\\D", ""));
-        String rg = String.format("%10.10s", contrato.getCliente().getRg().replaceAll("\\D", ""));
-        String celular = contrato.getCliente().getCelular().replaceAll("\\D", "");
+    public static void gerarContratoTxt(Cliente cliente) throws IOException {
 
-        //ENDEREÇO
-        String logradouro = String.format("%20.20s", contrato.getCliente().getEndereco().getLogradouro());
-        String numeroEndereco = String.format("%06d", contrato.getCliente().getEndereco().getNumero());
-        String bairro = String.format("%15.15s", contrato.getCliente().getEndereco().getBairro());
-        String complemento = String.format("%10.10s", contrato.getCliente().getEndereco().getComplemento());
-        String cidade = String.format("%30.30s", contrato.getCliente().getEndereco().getCidade());
-        String cep = String.format("%08d", Integer.parseInt(contrato.getCliente().getEndereco().getCep().replaceAll("\\D", "")));
-        String uf = contrato.getCliente().getEndereco().getUf();
-        String pais = contrato.getCliente().getEndereco().getEnumPais().getSigla();
+        for (Contrato contrato : cliente.getListaContratos()) {
+            //BUILDER
+            StringBuilder resultado = new StringBuilder();
 
-        String data = contrato.getData().toString().replaceAll("\\D", "");
-        String hora = String.format("%02d", contrato.getHora().getHour()) + String.format("%02d", contrato.getHora().getMinute());
-        String protocolo = contrato.getProtocolo();
-        char tipoNofiticacao = contrato.getTipoNotificacao().getSigla();
-        String tipoServico = contrato.getTipoServico() == EnumTipoServico.AGUA ? "A" : "L";
-        String valorServico = String.format("%08d", Integer.parseInt(contrato.getTipoServico().getValor().toString().replaceAll("\\D", "")));
+            //CLIENTE
+            resultado.append(String.format("%s", cliente.getCpf().replaceAll("\\D", "")));
+            resultado.append(String.format("%10.10s", cliente.getRg().replaceAll("\\D", "")));
+            resultado.append(String.format("%30.30s", cliente.getNome()));
+            resultado.append(cliente.getCelular().replaceAll("\\D", ""));
 
-        //BUILDER
-        StringBuilder resultado = new StringBuilder();
-        resultado.append(cpf);
-        resultado.append(rg);
-        resultado.append(nome);
-        resultado.append(celular);
+            //ENDEREÇO
+            resultado.append(String.format("%20.20s", cliente.getEndereco().getLogradouro()));
+            resultado.append(String.format("%06d", cliente.getEndereco().getNumero()));
+            resultado.append(String.format("%10.10s", cliente.getEndereco().getComplemento()));
+            resultado.append(String.format("%15.15s", cliente.getEndereco().getBairro()));
+            resultado.append(String.format("%30.30s", cliente.getEndereco().getCidade()));
+            resultado.append(cliente.getEndereco().getUf());
+            resultado.append(String.format("%08d", Integer.parseInt(cliente.getEndereco().getCep().replaceAll("\\D", ""))));
+            resultado.append(cliente.getEndereco().getEnumPais().getSigla());
 
-        resultado.append(logradouro);
-        resultado.append(numeroEndereco);
-        resultado.append(complemento);
-        resultado.append(bairro);
-        resultado.append(cidade);
-        resultado.append(uf);
-        resultado.append(cep);
-        resultado.append(pais);
+            //CONTRATOS
+            resultado.append(contrato.getProtocolo());
+            resultado.append(contrato.getData().toString().replaceAll("\\D", ""));
+            resultado.append(contrato.getHora().format(DateTimeFormatter.ofPattern("HHmm")));
+            resultado.append(contrato.getTipoServico() == EnumTipoServico.AGUA ? "A" : "L");
+            resultado.append(String.format("%08d", Integer.parseInt(contrato.getTipoServico().getValor().toString().replaceAll("\\D", ""))));
+            resultado.append(contrato.getTipoNotificacao().getSigla());
 
-        resultado.append(protocolo);
-        resultado.append(data);
-        resultado.append(hora);
-        resultado.append(tipoServico);
-        resultado.append(valorServico);
-        resultado.append(tipoNofiticacao);
+            File directory = new File(".\\src\\main\\java\\agua-luz-output");
 
-        File directory = new File(".\\src\\main\\java\\agua-luz-output");
+            if (!directory.exists()) {
+                directory.mkdir();
+            }
 
-        if (!directory.exists()) {
-            directory.mkdir();
+            BufferedWriter writer = new BufferedWriter(new FileWriter(directory.toPath() + "\\agua-luz-contratos.txt", true));
+            writer.write(resultado.toString());
+            writer.newLine();
+            writer.close();
         }
-
-        BufferedWriter writer = new BufferedWriter(new FileWriter(directory.toPath() + "\\agua-luz-contratos.txt", true));
-        writer.write(resultado.toString());
-        writer.newLine();
-        writer.close();
-
-        System.out.println("Arquivo agua-luz-contratos.txt gerado com sucesso!");
+        System.out.println("Arquivo agua-luz-clientes.txt gerado com sucesso!");
     }
 
-    public static void gerarContratoCsv(Contrato contrato) throws IOException {
-        //BUILDER
-        StringBuilder resultado = new StringBuilder();
+    public static void gerarContratoCsv(Cliente cliente) throws IOException {
+        for (Contrato contrato : cliente.getListaContratos()) {
+            //BUILDER
+            StringBuilder resultado = new StringBuilder();
 
-        //CLIENTE
-        resultado.append(contrato.getCliente().getCpf() + ";");
-        resultado.append(contrato.getCliente().getRg() + ";");
-        resultado.append(contrato.getCliente().getNome() + ";");
-        resultado.append(contrato.getCliente().getCelular() + ";");
+            //CLIENTE
+            resultado.append(cliente.getCpf() + ";");
+            resultado.append(cliente.getRg() + ";");
+            resultado.append(cliente.getNome() + ";");
+            resultado.append(cliente.getCelular() + ";");
 
-        //ENDEREÇO
-        resultado.append(contrato.getCliente().getEndereco().getLogradouro() + ";");
-        resultado.append(contrato.getCliente().getEndereco().getNumero() + ";");
-        resultado.append(contrato.getCliente().getEndereco().getComplemento() + ";");
-        resultado.append(contrato.getCliente().getEndereco().getBairro() + ";");
-        resultado.append(contrato.getCliente().getEndereco().getCidade() + ";");
-        resultado.append(contrato.getCliente().getEndereco().getUf() + ";");
-        resultado.append(contrato.getCliente().getEndereco().getCep() + ";");
-        resultado.append(contrato.getCliente().getEndereco().getEnumPais() + ";");
+            //ENDEREÇO
+            resultado.append(cliente.getEndereco().getLogradouro() + ";");
+            resultado.append(cliente.getEndereco().getNumero() + ";");
+            resultado.append(cliente.getEndereco().getComplemento() + ";");
+            resultado.append(cliente.getEndereco().getBairro() + ";");
+            resultado.append(cliente.getEndereco().getCidade() + ";");
+            resultado.append(cliente.getEndereco().getUf() + ";");
+            resultado.append(cliente.getEndereco().getCep() + ";");
+            resultado.append(cliente.getEndereco().getEnumPais() + ";");
 
-        //CONTRATO
-        resultado.append(contrato.getProtocolo() + ";");
-        resultado.append(contrato.getData() + ";");
-        resultado.append(String.format("%02d", contrato.getHora().getHour()) + ":" + (String.format("%02d", contrato.getHora().getMinute()) + ";"));
-        resultado.append(contrato.getTipoServico() + ";");
-        resultado.append(contrato.getTipoServico().getValor() + ";");
-        resultado.append(contrato.getTipoNotificacao());
+            //CONTRATO
+            resultado.append(contrato.getProtocolo() + ";");
+            resultado.append(contrato.getData() + ";");
+            resultado.append(contrato.getHora().format(DateTimeFormatter.ofPattern("HH:mm")) + ";");
+            resultado.append(contrato.getTipoServico() + ";");
+            resultado.append(contrato.getTipoServico().getValor() + ";");
+            resultado.append(contrato.getTipoNotificacao());
 
-        File directory = new File(".\\src\\main\\java\\agua-luz-output");
+            File directory = new File(".\\src\\main\\java\\agua-luz-output");
 
-        if (!directory.exists()) {
-            directory.mkdir();
+            if (!directory.exists()) {
+                directory.mkdir();
+            }
+
+            BufferedWriter writer = new BufferedWriter(new FileWriter(directory.toPath() + "\\agua-luz-contratos.csv", true));
+            writer.write(resultado.toString());
+            writer.newLine();
+            writer.close();
         }
-
-        BufferedWriter writer = new BufferedWriter(new FileWriter(directory.toPath() + "\\agua-luz-contratos.csv", true));
-        writer.write(resultado.toString());
-        writer.newLine();
-        writer.close();
-
-        System.out.println("Arquivo agua-luz-contratos.csv gerado com sucesso!");
+        System.out.println("Arquivo agua-luz-clientes.csv gerado com sucesso!");
     }
 }

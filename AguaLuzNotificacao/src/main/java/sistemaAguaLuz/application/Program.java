@@ -1,7 +1,7 @@
 package sistemaAguaLuz.application;
 
 import sistemaAguaLuz.model.CarregarArquivoContrato;
-import sistemaAguaLuz.model.Contrato;
+import sistemaAguaLuz.model.Cliente;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -9,14 +9,14 @@ import java.util.ArrayList;
 public class Program {
     public static void main(String[] args) {
         try {
-            ArrayList<Contrato> listaContratosTxt = CarregarArquivoContrato.carregarContratosTxt();
-            ArrayList<Contrato> listaContratosCsv = CarregarArquivoContrato.carregarContratosCsv();
+            ArrayList<Cliente> listaContratosTxt = CarregarArquivoContrato.carregarContratosTxt();
+            ArrayList<Cliente> listaContratosCsv = CarregarArquivoContrato.carregarContratosCsv();
 
-            for (Contrato x: listaContratosTxt) {
+            for (Cliente x: listaContratosTxt) {
                 System.out.println(x);
             }
 
-            for (Contrato x: listaContratosCsv) {
+            for (Cliente x: listaContratosCsv) {
                 System.out.println(x);
             }
         } catch (IOException error) {

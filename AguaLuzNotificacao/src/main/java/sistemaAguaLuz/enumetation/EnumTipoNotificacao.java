@@ -1,22 +1,24 @@
 package sistemaAguaLuz.enumetation;
 
 public enum EnumTipoNotificacao {
-    WHATSAPP('W'),
-    SMS('S');
+    WHATSAPP("W"),
+    SMS("S");
 
-    private final char sigla;
+    private final String sigla;
 
-    EnumTipoNotificacao(char sigla) {
+    EnumTipoNotificacao(String sigla) {
         this.sigla = sigla;
     }
 
-    public char getSigla() {
+    public String getSigla() {
         return sigla;
     }
 
     public static EnumTipoNotificacao getNotificacao(String sigla) {
-        if (sigla == "W")
-            return EnumTipoNotificacao.WHATSAPP;
-        return EnumTipoNotificacao.SMS;
+        for(EnumTipoNotificacao tn : values()){
+            if(tn.getSigla().equals(sigla))
+                return tn;
+        }
+        throw new IllegalArgumentException("Nao foi possivel localizar um tipo notificacao com a sigla " + sigla);
     }
 }

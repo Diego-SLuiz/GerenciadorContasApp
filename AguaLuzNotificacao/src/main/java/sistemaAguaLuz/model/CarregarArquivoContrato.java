@@ -14,17 +14,18 @@ import java.util.ArrayList;
 
 public class CarregarArquivoContrato {
 
-    public static ArrayList<Contrato> carregarContratosTxt() throws IOException {
+    public static ArrayList<Cliente> carregarContratosTxt() throws IOException {
         File diretorio = new File("..\\AguaLuzAtracao\\src\\main\\java\\agua-luz-output\\");
         FileReader arquivo = new FileReader(diretorio.getPath() + "\\agua-luz-contratos.txt");
         BufferedReader reader = new BufferedReader(arquivo);
-        Contrato contrato = new Contrato();
-        Cliente cliente = new Cliente();
-        Endereco endereco = new Endereco();
-        ArrayList<Contrato> listaContratos = new ArrayList<Contrato>();
+        ArrayList<Cliente> listaClientes = new ArrayList<Cliente>();
         String line;
 
         while ((line = reader.readLine()) != null) {
+            Contrato contrato = new Contrato();
+            Cliente cliente = new Cliente();
+            Endereco endereco = new Endereco();
+
             cliente.setCpf(line.substring(0, 11).trim());
             cliente.setRg(line.substring(11, 21).trim());
             cliente.setNome(line.substring(21, 51).trim());
@@ -42,29 +43,29 @@ public class CarregarArquivoContrato {
             contrato.setProtocolo(line.substring(155, 165).trim());
             contrato.setData(LocalDate.of(Integer.parseInt(line.substring(165, 169)), Integer.parseInt(line.substring(169, 171)), Integer.parseInt(line.substring(171, 173))));
             contrato.setHora(LocalTime.of(Integer.parseInt(line.substring(173, 175)), Integer.parseInt(line.substring(175, 177))));
-            contrato.setTipoServico(EnumTipoServico.getServico(line.substring(177, 179)));
+            contrato.setTipoServico(EnumTipoServico.getServico(line.substring(177, 178)));
             contrato.setTipoNotificacao(EnumTipoNotificacao.getNotificacao(line.substring(186, 187).trim()));
 
             cliente.setEndereco(endereco);
-            contrato.setCliente(cliente);
-            listaContratos.add(contrato);
+            cliente.addContrato(contrato);
+            listaClientes.add(cliente);
         }
 
-        return listaContratos;
+        return listaClientes;
     }
 
-    public static ArrayList<Contrato> carregarContratosCsv() throws IOException {
+    public static ArrayList<Cliente> carregarContratosCsv() throws IOException {
         File diretorio = new File("..\\AguaLuzAtracao\\src\\main\\java\\agua-luz-output\\");
         FileReader arquivo = new FileReader(diretorio.getPath() + "\\agua-luz-contratos.csv");
         BufferedReader reader = new BufferedReader(arquivo);
-        Contrato contrato = new Contrato();
-        Cliente cliente = new Cliente();
-        Endereco endereco = new Endereco();
-        ArrayList<Contrato> listaContratos = new ArrayList<Contrato>();
+        ArrayList<Cliente> listaClientes = new ArrayList<Cliente>();
         String line;
 
         while ((line = reader.readLine()) != null) {
             String[] atributos = line.split(";");
+            Contrato contrato = new Contrato();
+            Cliente cliente = new Cliente();
+            Endereco endereco = new Endereco();
 
             cliente.setCpf(atributos[0]);
             cliente.setRg(atributos[1]);
@@ -87,11 +88,10 @@ public class CarregarArquivoContrato {
             contrato.setTipoNotificacao(EnumTipoNotificacao.valueOf(atributos[17]));
 
             cliente.setEndereco(endereco);
-            contrato.setCliente(cliente);
-
-            listaContratos.add(contrato);
+            cliente.addContrato(contrato);
+            listaClientes.add(cliente);
         }
 
-        return listaContratos;
+        return listaClientes;
     }
 }

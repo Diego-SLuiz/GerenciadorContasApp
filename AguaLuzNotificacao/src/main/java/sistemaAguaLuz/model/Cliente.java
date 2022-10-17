@@ -1,11 +1,14 @@
 package sistemaAguaLuz.model;
 
+import java.util.ArrayList;
+
 public class Cliente {
     private String nome;
     private String cpf;
     private String rg;
     private String celular;
     private Endereco endereco;
+    private ArrayList<Contrato> listaContratos;
 
     public String getNome() {
         return nome;
@@ -43,8 +46,21 @@ public class Cliente {
         return endereco;
     }
 
+
     public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
+    }
+
+    public ArrayList<Contrato> getListaContratos() {
+        return listaContratos;
+    }
+
+    public Cliente() {
+        listaContratos = new ArrayList<Contrato>();
+    }
+
+    public void addContrato(Contrato contrato) {
+        listaContratos.add(contrato);
     }
 
     @Override
@@ -55,6 +71,7 @@ public class Cliente {
                 ", rg='" + rg + '\'' +
                 ", celular='" + celular + '\'' +
                 ", endereco=" + endereco +
+                ", listaContratos=" + listaContratos +
                 '}';
     }
 }
