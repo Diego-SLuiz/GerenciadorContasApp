@@ -12,13 +12,14 @@ public class Program {
             ArrayList<Cliente> listaContratosTxt = CarregarArquivoContrato.carregarContratosTxt();
             ArrayList<Cliente> listaContratosCsv = CarregarArquivoContrato.carregarContratosCsv();
 
-            for (Cliente x: listaContratosTxt) {
-                System.out.println(x);
-            }
+            System.out.println(listaContratosCsv.get(0).exibirContrato());
+            //for (Cliente x: listaContratosTxt) {
+            //    System.out.println(x);
+            //}
 
-            for (Cliente x: listaContratosCsv) {
-                System.out.println(x);
-            }
+            //for (Cliente x: listaContratosCsv) {
+            //    System.out.println(x);
+            //}
         } catch (IOException error) {
             throw new RuntimeException(error);
         }

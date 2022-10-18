@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class CarregarArquivoContrato {
 
@@ -41,8 +42,8 @@ public class CarregarArquivoContrato {
             endereco.setPais(EnumPais.getPais(line.substring(153, 155).trim()));
 
             contrato.setProtocolo(line.substring(155, 165).trim());
-            contrato.setData(LocalDate.of(Integer.parseInt(line.substring(165, 169)), Integer.parseInt(line.substring(169, 171)), Integer.parseInt(line.substring(171, 173))));
-            contrato.setHora(LocalTime.of(Integer.parseInt(line.substring(173, 175)), Integer.parseInt(line.substring(175, 177))));
+            contrato.setData(LocalDate.parse(line.substring(165, 169) + "-"  + line.substring(169, 171) + "-" + line.substring(171, 173)));
+            contrato.setHora(LocalTime.parse(line.substring(173, 175) + ":" + line.substring(175, 177)));
             contrato.setTipoServico(EnumTipoServico.getServico(line.substring(177, 178)));
             contrato.setTipoNotificacao(EnumTipoNotificacao.getNotificacao(line.substring(186, 187).trim()));
 
