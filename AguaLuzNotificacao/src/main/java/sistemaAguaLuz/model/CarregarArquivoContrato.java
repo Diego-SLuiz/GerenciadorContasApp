@@ -4,10 +4,12 @@ import sistemaAguaLuz.enumetation.EnumPais;
 import sistemaAguaLuz.enumetation.EnumTipoNotificacao;
 import sistemaAguaLuz.enumetation.EnumTipoServico;
 
+import javax.swing.text.MaskFormatter;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.File;
 import java.io.IOException;
+import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -15,12 +17,17 @@ import java.util.Locale;
 
 public class CarregarArquivoContrato {
 
-    public static ArrayList<Cliente> carregarContratosTxt() throws IOException {
+    public static ArrayList<Cliente> carregarContratosTxt() throws IOException, ParseException {
         File diretorio = new File("..\\AguaLuzAtracao\\src\\main\\java\\agua-luz-output\\");
         FileReader arquivo = new FileReader(diretorio.getPath() + "\\agua-luz-contratos.txt");
         BufferedReader reader = new BufferedReader(arquivo);
         ArrayList<Cliente> listaClientes = new ArrayList<Cliente>();
         String line;
+
+        MaskFormatter cpfFormat = new MaskFormatter("AAA.AAA.AAA-AA");
+        MaskFormatter cepFormat = new MaskFormatter("AAAAA-AAA");
+        cpfFormat.setValueContainsLiteralCharacters(false);
+        cepFormat.setValueContainsLiteralCharacters(false);
 
         while ((line = reader.readLine()) != null) {
             Contrato contrato = new Contrato();
@@ -50,6 +57,9 @@ public class CarregarArquivoContrato {
             cliente.setEndereco(endereco);
             cliente.addContrato(contrato);
             listaClientes.add(cliente);
+
+            cliente.setCpf(cpfFormat.valueToString(cliente.getCpf()));
+            endereco.setCep(cepFormat.valueToString(endereco.getCep()));
         }
 
         return listaClientes;

@@ -26,11 +26,23 @@ public class Program {
         endereco.setEnumPais(EnumPais.BRASIL);
 
         // Criando objeto contrato
-        Contrato contrato = new Contrato();
-        contrato.setData(LocalDate.now().plusDays(10));
-        contrato.setHora(LocalTime.now());
-        contrato.setTipoServico(EnumTipoServico.AGUA);
-        contrato.setTipoNotificacao(EnumTipoNotificacao.SMS);
+        Contrato contrato1 = new Contrato();
+        contrato1.setData(LocalDate.now().plusDays(10));
+        contrato1.setHora(LocalTime.now());
+        contrato1.setTipoServico(EnumTipoServico.LUZ);
+        contrato1.setTipoNotificacao(EnumTipoNotificacao.WHATSAPP);
+
+        Contrato contrato2 = new Contrato();
+        contrato2.setData(LocalDate.now().plusDays(10));
+        contrato2.setHora(LocalTime.now());
+        contrato2.setTipoServico(EnumTipoServico.AGUA);
+        contrato2.setTipoNotificacao(EnumTipoNotificacao.WHATSAPP);
+
+        Contrato contrato3 = new Contrato();
+        contrato3.setData(LocalDate.now().plusDays(10));
+        contrato3.setHora(LocalTime.now());
+        contrato3.setTipoServico(EnumTipoServico.LUZ);
+        contrato3.setTipoNotificacao(EnumTipoNotificacao.SMS);
 
         // Criando objeto cliente
         Cliente cliente = new Cliente();
@@ -39,11 +51,10 @@ public class Program {
         cliente.setRg("10.232.99-20");
         cliente.setCelular("(11)99898-7777");
         cliente.setEndereco(endereco);
-        cliente.addContrato(contrato);
-        cliente.addContrato(contrato);
-        cliente.addContrato(contrato);
-        cliente.addContrato(contrato);
-        cliente.addContrato(contrato);
+
+        cliente.addContrato(contrato1);
+        cliente.addContrato(contrato2);
+        cliente.addContrato(contrato3);
 
         // Gerando arquivo do contrato
         try {
