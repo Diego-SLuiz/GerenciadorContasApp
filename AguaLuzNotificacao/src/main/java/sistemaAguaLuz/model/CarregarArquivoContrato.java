@@ -47,6 +47,8 @@ public class CarregarArquivoContrato {
 
             cliente.setEndereco(endereco);
             contrato.setCliente(cliente);
+            cliente.setCpf(String.format("xxx-xxx-xxx-xx", cliente.getCpf()));
+
             listaContratos.add(contrato);
         }
 
