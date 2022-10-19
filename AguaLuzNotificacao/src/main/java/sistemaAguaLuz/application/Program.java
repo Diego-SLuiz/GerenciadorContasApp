@@ -12,9 +12,11 @@ public class Program {
         try {
             ArrayList<Cliente> listaClientesTxt = CarregarArquivoContrato.carregarContratosTxt();
             ArrayList<Cliente> listaClientesCsv = CarregarArquivoContrato.carregarContratosCsv();
+            //System.out.println(listaClientesTxt);
+            //System.out.println(listaClientesCsv);
 
-            for (Cliente x: listaClientesCsv) {
-                System.out.println(x.exibirContrato());
+            for (Cliente x: listaClientesTxt) {
+                System.out.println(x.exibirContratos());
             }
         } catch (Exception error) {
             throw new RuntimeException(error);
