@@ -1,8 +1,8 @@
 package sistemaAguaLuz.model;
 
-import sistemaAguaLuz.enumetation.EnumPais;
-import sistemaAguaLuz.enumetation.EnumTipoNotificacao;
-import sistemaAguaLuz.enumetation.EnumTipoServico;
+import sistemaAguaLuz.enumeration.EnumPais;
+import sistemaAguaLuz.enumeration.EnumTipoNotificacao;
+import sistemaAguaLuz.enumeration.EnumTipoServico;
 
 import javax.swing.text.MaskFormatter;
 import java.io.BufferedReader;
@@ -13,7 +13,6 @@ import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Locale;
 
 public class CarregarArquivoContrato {
 

@@ -1,4 +1,4 @@
-package sistemaAguaLuz.enumetation;
+package sistemaAguaLuz.enumeration;
 
 public enum EnumTipoNotificacao {
     WHATSAPP("W"),

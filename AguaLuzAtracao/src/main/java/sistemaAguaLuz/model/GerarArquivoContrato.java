@@ -1,6 +1,6 @@
 package sistemaAguaLuz.model;
 
-import sistemaAguaLuz.enumetation.EnumTipoServico;
+import sistemaAguaLuz.enumeration.EnumTipoServico;
 
 import java.io.BufferedWriter;
 import java.io.File;

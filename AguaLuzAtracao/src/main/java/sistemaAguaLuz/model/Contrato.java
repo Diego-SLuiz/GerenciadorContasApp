@@ -1,7 +1,7 @@
 package sistemaAguaLuz.model;
 
-import sistemaAguaLuz.enumetation.EnumTipoNotificacao;
-import sistemaAguaLuz.enumetation.EnumTipoServico;
+import sistemaAguaLuz.enumeration.EnumTipoNotificacao;
+import sistemaAguaLuz.enumeration.EnumTipoServico;
 
 import java.time.LocalDate;
 import java.time.LocalTime;

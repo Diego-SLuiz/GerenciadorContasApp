@@ -1,6 +1,6 @@
 package sistemaAguaLuz.model;
 
-import sistemaAguaLuz.enumetation.EnumPais;
+import sistemaAguaLuz.enumeration.EnumPais;
 
 public class Endereco {
     private String logradouro;

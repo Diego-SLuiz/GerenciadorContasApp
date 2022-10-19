@@ -1,4 +1,4 @@
-package sistemaAguaLuz.enumetation;
+package sistemaAguaLuz.enumeration;
 
 public enum EnumTipoServico {
     AGUA(127.33, "A"),

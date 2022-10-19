@@ -1,8 +1,8 @@
 package sistemaAguaLuz.application;
 
-import sistemaAguaLuz.enumetation.EnumPais;
-import sistemaAguaLuz.enumetation.EnumTipoNotificacao;
-import sistemaAguaLuz.enumetation.EnumTipoServico;
+import sistemaAguaLuz.enumeration.EnumPais;
+import sistemaAguaLuz.enumeration.EnumTipoNotificacao;
+import sistemaAguaLuz.enumeration.EnumTipoServico;
 import sistemaAguaLuz.model.Cliente;
 import sistemaAguaLuz.model.Contrato;
 import sistemaAguaLuz.model.Endereco;
